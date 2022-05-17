@@ -9,6 +9,7 @@ import { DeleteProductsComponent } from './delete-products/delete-products.compo
 import { ViewProductsComponent } from './view-products/view-products.component';
 import { ViewAllProductsComponent } from './view-all-products/view-all-products.component';
 import { ViewProductsByCategoryComponent } from './view-products-by-category/view-products-by-category.component';
+import { ViewProductsByDateComponent } from './view-products-by-date/view-products-by-date.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ViewProductsByCategoryComponent } from './view-products-by-category/vie
     DeleteProductsComponent,
     ViewProductsComponent,
     ViewAllProductsComponent,
-    ViewProductsByCategoryComponent
+    ViewProductsByCategoryComponent,
+    ViewProductsByDateComponent
   ],
   imports: [
     CommonModule,
