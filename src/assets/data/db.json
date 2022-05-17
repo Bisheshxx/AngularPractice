@@ -1,8 +1,8 @@
 {
-    "posts": [
-        { "id": 1, "title": "json-server", "author": "typicode" },
-        { "id": 2, "title": "json-server", "author": "typicode" },
-        { "id": 3, "title": "json-server", "author": "typicode" }
+    "products": [
+        { "id": 1, "name": "shirt", "category_id": "1", "desc": "Something", "price": 100, "is_available": true, "rating": 1, "review": "some review", "vendor_name": "abc" },
+        { "id": 2, "name": "Pant", "category_id": "2", "desc": "Something", "price": 100, "is_available": true, "rating": 1, "review": "some review", "vendor_name": "abc" },
+        { "id": 3, "name": "Shoes", "category_id": "3", "desc": "Something", "price": 100, "is_available": true, "rating": 1, "review": "some review", "vendor_name": "abc" }
     ],
     "comments": [
         { "id": 1, "body": "some comment", "postId": 1 },
