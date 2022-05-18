@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {Product} from './product'
+import {Category} from '../site-layout/sidebar/Category'
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,9 @@ export class ProductServiceService {
     const baseUrl ="http://localhost:3000/products"
     return this.httpClient.post<Product>(baseUrl, productbody)
   }
-  getProduct():Observable<Product>{
+  getProduct():Observable<Product[]>{
     const baseUrl ="http://localhost:3000/products"
-    return this.httpClient.get<Product>(baseUrl)
+    return this.httpClient.get<Product[]>(baseUrl)
   }
   getProductById(productId: string):Observable<Product>{
     const baseUrl ="http://localhost:3000/products/"+productId
@@ -36,5 +37,9 @@ export class ProductServiceService {
   searchDateProduct(date:Date):Observable<Product>{
     const baseUrl ="http://localhost:3000/product/category="+date
     return this.httpClient.get<Product>(baseUrl)
+  }
+  getCategory():Observable<Category>{
+    const categoryUrl ="http://localhost:3000/categories"
+    return this.httpClient.get<Category>(categoryUrl)
   }
 }
