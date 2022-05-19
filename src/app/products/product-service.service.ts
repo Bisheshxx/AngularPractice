@@ -18,7 +18,7 @@ export class ProductServiceService {
     const baseUrl ="http://localhost:3000/products"
     return this.httpClient.get<Product[]>(baseUrl)
   }
-  getProductById(productId: string):Observable<Product>{
+  getProductById(productId: number):Observable<Product>{
     const baseUrl ="http://localhost:3000/products/"+productId
     return this.httpClient.get<Product>(baseUrl)
   }
@@ -30,16 +30,16 @@ export class ProductServiceService {
     const baseUrl ="http://localhost:3000/products/"+productId
     return this.httpClient.delete<Product>(baseUrl)
   }
-  searchCategoryProduct(categoryId:number):Observable<Product>{
-    const baseUrl ="http://localhost:3000/product/category="+categoryId
-    return this.httpClient.get<Product>(baseUrl)
+  searchCategoryProduct(categoryId:Category):Observable<Product[]>{
+    const baseUrl ="http://localhost:3000/products?category="+categoryId
+    return this.httpClient.get<Product[]>(baseUrl)
   }
-  searchDateProduct(date:Date):Observable<Product>{
-    const baseUrl ="http://localhost:3000/product/category="+date
-    return this.httpClient.get<Product>(baseUrl)
+  searchDateProduct(date:Date):Observable<Product[]>{
+    const baseUrl ="http://localhost:3000/products?category="+date
+    return this.httpClient.get<Product[]>(baseUrl)
   }
-  getCategory():Observable<Category>{
+  getCategory():Observable<Category[]>{
     const categoryUrl ="http://localhost:3000/categories"
-    return this.httpClient.get<Category>(categoryUrl)
+    return this.httpClient.get<Category[]>(categoryUrl)
   }
 }
