@@ -10,7 +10,7 @@ import {Category} from '../site-layout/sidebar/Category'
 export class ProductServiceService {
 
   constructor(private httpClient: HttpClient) {}
-  createProduct(productbody: any):Observable<Product> {
+  createProduct(productbody: Product):Observable<Product> {
     const baseUrl ="http://localhost:3000/products"
     return this.httpClient.post<Product>(baseUrl, productbody)
   }
@@ -22,7 +22,7 @@ export class ProductServiceService {
     const baseUrl ="http://localhost:3000/products/"+productId
     return this.httpClient.get<Product>(baseUrl)
   }
-  updateProductById(productId: Product,productBody:Product):Observable<Product>{
+  updateProductById(productId: number,productBody:Product):Observable<Product>{
     const baseUrl ="http://localhost:3000/products/"+productId;
     return this.httpClient.put<Product>(baseUrl, productBody)
   }
