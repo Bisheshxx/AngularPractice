@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Product } from '../product';
+import { ProductServiceService } from '../product-service.service';
 @Component({
   selector: 'app-add-products',
   templateUrl: './add-products.component.html',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddProductsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private productServices:ProductServiceService) { }
 
   ngOnInit(): void {
   }
-
+  addNewProduct(form:any){
+    console.log(form.value)
+    let newProduct:Product ={
+      id:(Math.floor(Math.random()*100)).toString(),
+      categoryId: form.value.product_category,
+      productName: form.value.product_name,
+      description: form.value.product_description,
+      rating: form.value.product_rating,
+      price: form.value.product_price,
+      productImg: form.value.category,
+      isAvailable: form.value.product_available,
+      color: form.value.product_color,
+      reviews: form.value.product_reviews
+    }
+    console.log(newProduct)
+    this.productServices.createProduct(newProduct).subscribe(data=>console.log(data))
+  }
 }

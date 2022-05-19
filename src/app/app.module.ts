@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OrdersModule } from './orders/orders.module';
 import { SiteLayoutModule } from './site-layout/site-layout.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,8 +16,10 @@ import { SiteLayoutModule } from './site-layout/site-layout.module';
     AppRoutingModule,
     OrdersModule,
     SiteLayoutModule,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],exports: [FormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })

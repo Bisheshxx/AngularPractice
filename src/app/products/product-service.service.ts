@@ -31,7 +31,7 @@ export class ProductServiceService {
     return this.httpClient.delete<Product>(baseUrl)
   }
   searchCategoryProduct(categoryId:Category):Observable<Product[]>{
-    const baseUrl ="http://localhost:3000/products?category="+categoryId
+    const baseUrl ="http://localhost:3000/products?categoryId="+categoryId
     return this.httpClient.get<Product[]>(baseUrl)
   }
   searchDateProduct(date:Date):Observable<Product[]>{
