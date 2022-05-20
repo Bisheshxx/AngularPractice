@@ -15,7 +15,7 @@ export class AddProductsComponent implements OnInit {
   addNewProduct(form:any){
     console.log(form.value)
     let newProduct:Product ={
-      id:(Math.floor(Math.random()*100)).toString(),
+      id:(Math.floor(Math.random()*100)),
       categoryId: form.value.product_category,
       productName: form.value.product_name,
       description: form.value.product_description,

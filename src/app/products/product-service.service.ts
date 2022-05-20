@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import {Product} from './product'
 import {Category} from '../site-layout/sidebar/Category'
 
@@ -8,7 +8,12 @@ import {Category} from '../site-layout/sidebar/Category'
   providedIn: 'root'
 })
 export class ProductServiceService {
-
+  ProductId:number
+  private ProductIDSource = new BehaviorSubject<number>(1)
+  currentProductId = this.ProductIDSource.asObservable()
+  changeProductId(id:number){
+    this.ProductIDSource.next(id)
+  }
   constructor(private httpClient: HttpClient) {}
   createProduct(productbody: Product):Observable<Product> {
     const baseUrl ="http://localhost:3000/products"
@@ -26,7 +31,7 @@ export class ProductServiceService {
     const baseUrl ="http://localhost:3000/products/"+productId;
     return this.httpClient.put<Product>(baseUrl, productBody)
   }
-  deleteProductById(productId: Product,productBody:any):Observable<Product>{
+  deleteProductById(productId: number):Observable<Product>{
     const baseUrl ="http://localhost:3000/products/"+productId
     return this.httpClient.delete<Product>(baseUrl)
   }

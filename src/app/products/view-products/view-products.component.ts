@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../product';
 import { ProductServiceService } from '../product-service.service';
 
@@ -11,7 +11,7 @@ import { ProductServiceService } from '../product-service.service';
 export class ViewProductsComponent implements OnInit {
 productId=0;
 productData:Product
-  constructor(private activatedrouter: ActivatedRoute,private productService:ProductServiceService) { }
+  constructor(private activatedrouter: ActivatedRoute,private productService:ProductServiceService,public router: Router) { }
 
   ngOnInit(): void {
     this.activatedrouter.params.subscribe(a => {
@@ -20,6 +20,11 @@ productData:Product
         this.productData=data
       })
     })
+  }
+  deleteProduct(id:number){
+    this.productService.changeProductId(id)
+    this.productService.deleteProductById(id).subscribe(data=>console.log(data))
+    this.router.navigate(['delete-products'])
   }
 
 }
