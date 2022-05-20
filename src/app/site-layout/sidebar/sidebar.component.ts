@@ -8,7 +8,7 @@ import { Category } from './Category';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  categoryList: any;
+  categoryList: Category[];
   // categoryList!: Category; not working when using category interface
   constructor(private productService: ProductServiceService) { }
 
@@ -17,5 +17,4 @@ export class SidebarComponent implements OnInit {
       this.categoryList=data
     })
   }
-
 }

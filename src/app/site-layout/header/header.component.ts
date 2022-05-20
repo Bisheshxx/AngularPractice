@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductServiceService } from 'src/app/products/product-service.service';
+import { Category } from '../sidebar/Category';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  categoryList:Category[]
+  constructor(private productService:ProductServiceService) { }
 
   ngOnInit(): void {
+    this.productService.getCategory().subscribe(data=>{
+      this.categoryList=data
+    })
   }
 
 }
