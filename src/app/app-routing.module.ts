@@ -11,7 +11,8 @@ const routes: Routes = [
   {
     path:'order',
     component: ListOrdersComponent
-  }
+  },
+  { path: 'user', loadChildren: () => import('./User/user/user.module').then(m => m.UserModule) }
 ];
 
 @NgModule({
