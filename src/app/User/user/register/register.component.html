@@ -14,6 +14,10 @@
           placeholder="Enter name"
           required
         />
+        <div *ngIf="this.signUpForm.get('name').errors?.['required'] && (signUpForm.dirty || signUpForm.touched)" class="alert alert-danger"> This form is required
+        </div>
+        <div *ngIf="this.signUpForm.get('name').errors?.['minLength'] && (signUpForm.dirty || signUpForm.touched)" class="alert alert-danger"> Name requires more than 10 characters
+        </div>
       </div>
       <div class="form-group">
         <label>Email address</label>
@@ -24,16 +28,27 @@
           placeholder="Enter email"
           required
         />
+        <div *ngIf="this.signUpForm.get('email').errors?.['required'] && (signUpForm.dirty || signUpForm.touched)" class="alert alert-danger"> This form is required
+        </div>
+        <div *ngIf="this.signUpForm.get('email').errors?.['minLength'] && (signUpForm.dirty || signUpForm.touched)" class="alert alert-danger"> Email requires more than 10 characters
+        </div>
+        <div *ngIf="this.signUpForm.get('email').errors?.['pattern'] && (signUpForm.dirty || signUpForm.touched)" class="alert alert-danger"> Enter Valid Email
+        </div>
       </div>
       <div class="form-group">
         <label>Phone Number</label>
         <input
+          maxlength="10"
           type="text"
           class="form-control"
           formControlName="mobile"
           placeholder="Enter Phone number"
           required
         />
+        <div *ngIf="this.signUpForm.get('mobile').errors?.['required'] && (signUpForm.dirty || signUpForm.touched)" class="alert alert-danger"> This form is required
+        </div>
+        <div *ngIf="this.signUpForm.get('mobile').errors?.['maxlength'] && (signUpForm.dirty || signUpForm.touched)" class="alert alert-danger"> Number requires 10 characters
+        </div>
       </div>
       <div class="form-group">
         <label>Password</label>
@@ -44,6 +59,10 @@
           placeholder="Password"
           required
         />
+        <div *ngIf="this.signUpForm.get('password').errors?.['required'] && (signUpForm.dirty || signUpForm.touched)" class="alert alert-danger"> This form is required
+        </div>
+        <div *ngIf="this.signUpForm.get('password').errors?.['minLength'] && (signUpForm.dirty || signUpForm.touched)" class="alert alert-danger"> Password requires at least 8 characters
+        </div>
       </div>
       <button type="submit" class="btn btn-block btn-primary">Sign up</button>
     </form>

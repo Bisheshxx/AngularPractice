@@ -18,11 +18,12 @@ export class AuthService {
     return this.http.post(api,user).pipe(catchError(this.handleError))
   }
   signIn(user:User){
-    return this.http.post<User>(`${this.endpoint}/signin`,user).subscribe((res:any)=>{
+    return this.http.post(`${this.endpoint}/signin`,user).subscribe((res:any)=>{
       localStorage.setItem('access-token',res.token);
+      localStorage.setItem('id',res._id)
       this.getUserProfile(res._id).subscribe(data=>{
-        this.currentUser=data.msg
         this.router.navigate(['user/profile/'+res._id])
+        return data.msg
       })
     })
   }
@@ -35,28 +36,32 @@ export class AuthService {
   }
   doLogout(){
     let removeToken = localStorage.removeItem('access-token');
-    if(removeToken==null){
-      this.router.navigate(['log-in'])
+    let removeId = localStorage.removeItem('id');
+    if(removeToken==null && removeId ==null){
+      this.router.navigate(['user/log-in'])
     }
   }
   getUserProfile(id:any):Observable<any>{
     let api=`${this.endpoint}/user-profile/${id}`
     return this.http.get(api,{headers:this.headers}).pipe(
       map(data=>{
-        return data||{}
+        return data
       }),
       catchError(this.handleError)
     )
   }
-  handleError(error: HttpErrorResponse) {
-    let msg = '';
+  handleError(error: any) {
+    let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
-      // client-side error
-      msg = error.error.message;
+      // Get client-side error
+      errorMessage = error.error.message;
     } else {
-      // server-side error
-      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.statusText}`;
     }
-    return throwError(msg);
+    window.alert(errorMessage);
+    return throwError(() => {
+      return errorMessage;
+    });
   }
 }

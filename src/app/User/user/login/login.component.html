@@ -1,25 +1,35 @@
-<div class="auth-wrapper">
-    <form class="form-signin" [formGroup]="signinForm" (ngSubmit)="loginUser()">
-      <h3 class="h3 mb-3 font-weight-normal text-center">Please sign in</h3>
-      <div class="form-group">
-        <label>Email</label>
-        <input
-          type="email"
-          class="form-control"
-          formControlName="email"
-          placeholder="Enter email"
-          required
-        />
+<!-- <div class="auth-wrapper">
+  <form class="form-signin" [formGroup]="signinForm" (ngSubmit)="loginUser()">
+    <h3 class="h3 mb-3 font-weight-normal text-center">Please sign in</h3>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" class="form-control" formControlName="email" placeholder="Enter email" required />
+      <div *ngIf="signinForm.invalid && (signinForm.dirty || signinForm.touched)" class="alert alert-danger">asdfhaspf
       </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input
-          type="password"
-          class="form-control"
-          formControlName="password"
-          placeholder="Password"
-        />
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" formControlName="password" placeholder="Password" required />
+    </div>
+    <button type="submit" class="btn btn-block btn-primary">Sign in</button>
+  </form>
+</div> -->
+<form class="row g-3 needs-validation" [formGroup]="signinForm" (ngSubmit)="loginUser()">
+  <div class="col-md-12">
+    <label for="validationCustom01" class="form-label">Email:</label>
+    <input type="email" class="form-control" formControlName="email" placeholder="Enter email" required>
+      <div *ngIf="this.signinForm.get('email').errors?.['required'] && (signinForm.dirty || signinForm.touched)" class="alert alert-danger"> This form is required
       </div>
-      <button type="submit" class="btn btn-block btn-primary">Sign in</button>
-    </form>
+      <div *ngIf="this.signinForm.get('email').errors?.['minlength'] && (signinForm.dirty || signinForm.touched)" class="alert alert-danger"> email requires more than 5 characters
+      </div>
   </div>
+  <div class="col-md-12">
+    <label for="validationCustom02" class="form-label">Password:</label>
+    <input type="password" class="form-control" formControlName="password" placeholder="Password" required>
+    <div *ngIf="this.signinForm.get('password').errors?.['required'] && (signinForm.dirty || signinForm.touched)" class="alert alert-danger"> This form is required
+    </div>
+    <div *ngIf="this.signinForm.get('password').errors?.['minlength'] && (signinForm.dirty || signinForm.touched)" class="alert alert-danger"> Password requires more than 8 characters
+    </div>
+  </div>
+  <div class="btn-login"><button type="submit" class="col-md-4 btn-login btn btn-block btn-primary">Sign in</button></div>
+</form>
